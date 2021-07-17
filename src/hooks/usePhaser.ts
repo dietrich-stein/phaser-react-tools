@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
 import ConfigError from '../errors/ConfigError'
 import Phaser from 'phaser'
@@ -14,8 +14,8 @@ import Phaser from 'phaser'
  */
 export default function usePhaser(
   config: Phaser.Types.Core.GameConfig
-): [MutableRefObject<HTMLCanvasElement>, Phaser.Game] {
-  const canvasRef = useRef<HTMLCanvasElement>()
+): [RefObject<HTMLCanvasElement>, Phaser.Game | undefined] {
+  const canvasRef = useRef<HTMLCanvasElement>(new HTMLCanvasElement())
   const [game, setGame] = useState<Phaser.Game>()
 
   useEffect(() => {
@@ -34,17 +34,16 @@ export default function usePhaser(
 
     const userDefinedPostBootCallback = config.callbacks?.postBoot
 
-    const auxiliaryPostBootCallback = (bootedGame) => {
+    const auxiliaryPostBootCallback = (bootedGame: Phaser.Game) => {
       setGame(() => bootedGame)
     }
 
-    if (userDefinedPostBootCallback) {
+    if (userDefinedPostBootCallback && modifiedConfig.callbacks) {
       modifiedConfig.callbacks.postBoot = (bootedGame) => {
         auxiliaryPostBootCallback(bootedGame)
         userDefinedPostBootCallback(bootedGame)
       }
-    } else if (config.callbacks) {
-      console.log('user did ')
+    } else if (config.callbacks && modifiedConfig.callbacks) {
       modifiedConfig.callbacks.postBoot = auxiliaryPostBootCallback
     } else {
       modifiedConfig.callbacks = {

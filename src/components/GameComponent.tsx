@@ -2,6 +2,7 @@ import { GameProvider } from '../contexts/GameContext'
 import PropTypes from 'prop-types'
 import React from 'react'
 import usePhaser from '../hooks/usePhaser'
+import Phaser from 'phaser'
 
 /**
  * A higher-order React functional component that manages the Phaser game.
@@ -15,7 +16,10 @@ import usePhaser from '../hooks/usePhaser'
  * @see module:usePhaser
  * @see module:GameProvider
  */
-export default function GameComponent({ children, config }) {
+export default function GameComponent({
+  children,
+  config
+}: React.PropsWithChildren<{ config: Phaser.Types.Core.GameConfig }>) {
   const [canvasRef, game] = usePhaser(config)
 
   return (

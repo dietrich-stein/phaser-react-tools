@@ -10,7 +10,7 @@ import { GameContext } from '../contexts/GameContext'
  * @param {string} type The type of event for which to listen.
  * @param {eventHandler} handler The event handler callback function.
  */
-export default function useEventListener(type, handler) {
+export default function useEventListener(type: string, handler: Function) {
   const game = useContext(GameContext)
 
   useEffect(() => {

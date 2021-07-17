@@ -10,12 +10,12 @@ import { GameContext } from '../contexts/GameContext'
  * @param {string} type The type of event to emit.
  * @returns {emitFunction} A function that can emit an event of the given type.
  */
-export default function useEventEmitter(type) {
+export default function useEventEmitter(type: string) {
   const game = useContext(GameContext)
 
   return useCallback(
     (detail) => {
-      game.events.emit(type, detail)
+      game && game.events.emit(type, detail)
     },
     [game]
   )
