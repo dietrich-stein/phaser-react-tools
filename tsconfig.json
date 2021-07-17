@@ -18,14 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "outDir": "dist"
+    "outDir": "lib/esm"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "lib"
   ]
 }
