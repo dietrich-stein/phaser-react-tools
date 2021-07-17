@@ -60,7 +60,7 @@
     "typescript": "^3.9.10"
   },
   "files": [
-    "dist"
+    "lib"
   ],
   "dependencies": {
     "@types/jest": "^26.0.24",
