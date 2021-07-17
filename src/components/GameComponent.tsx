@@ -24,8 +24,8 @@ export default function GameComponent({
 
   return (
     <div style={{ display: 'inline-block', position: 'relative' }}>
-      <GameProvider value={game}>{children}</GameProvider>
       <canvas ref={canvasRef} />
+      <GameProvider value={game}>{children}</GameProvider>
     </div>
   )
 }
