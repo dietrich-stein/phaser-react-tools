@@ -11,7 +11,7 @@ export default class MissingArgumentError extends TypeError {
    *
    * @param  {...any} [args] The error arguments.
    */
-  constructor(...args) {
+  constructor(...args: string[]) {
     super(...args)
     Error.captureStackTrace(this, MissingArgumentError)
   }

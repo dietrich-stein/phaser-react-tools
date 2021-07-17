@@ -1,3 +1,4 @@
+import Phaser from 'phaser'
 import InvalidPropertyNameError from './InvalidPropertyNameError'
 import MissingArgumentError from './MissingArgumentError'
 
@@ -16,7 +17,7 @@ export default class ConfigError extends TypeError {
    * @param {*} propertyName The name of the property whose value is set incorrectly.
    * @throws {module:MissingArgumentError} Will throw a MissingArgumentError if required arguments are missing.
    */
-  constructor(config, propertyName) {
+  constructor(config: Phaser.Types.Core.GameConfig, propertyName: string) {
     if (!config) {
       throw new MissingArgumentError(
         'You must provide the Phaser config object whose property value is set incorrectly when attempting to create a ConfigError.'

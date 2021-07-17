@@ -11,7 +11,7 @@ export default class InvalidPropertyNameError extends TypeError {
    *
    * @param  {...any} [args] The error arguments.
    */
-  constructor(...args) {
+  constructor(...args: string[]) {
     super(...args)
     Error.captureStackTrace(this, InvalidPropertyNameError)
   }
