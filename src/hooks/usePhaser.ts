@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 
 import ConfigError from '../errors/ConfigError'
 import Phaser from 'phaser'
@@ -12,9 +12,11 @@ import Phaser from 'phaser'
  * @returns {InstanceConfig} A config object containing a canvas ref and a reference to the Phaser game instance.
  * @throws {module:ConfigError} Will throw a ConfigError if the Phaser game is mis-configured by the user.
  */
-export default function usePhaser(config = {}) {
-  const canvasRef = useRef()
-  const [game, setGame] = useState()
+export default function usePhaser(
+  config: Phaser.Types.Core.GameConfig
+): [MutableRefObject<HTMLCanvasElement>, Phaser.Game] {
+  const canvasRef = useRef<HTMLCanvasElement>()
+  const [game, setGame] = useState<Phaser.Game>()
 
   useEffect(() => {
     if (config.canvas) {
@@ -53,7 +55,7 @@ export default function usePhaser(config = {}) {
     const phaser = new Phaser.Game(modifiedConfig)
 
     return () => {
-      phaser.destroy()
+      phaser.destroy(false)
     }
   }, [config])
 

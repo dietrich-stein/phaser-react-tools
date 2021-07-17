@@ -5,7 +5,7 @@ import {
   useEventEmitter,
   useEventListener,
   usePhaser
-} from './index.js'
+} from './index.ts'
 
 describe('The phaser-react-tools module', () => {
   it('should export GameComponent.', () => {

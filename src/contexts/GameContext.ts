@@ -1,4 +1,5 @@
 import { createContext } from 'react'
+import Phaser from 'phaser'
 
 /**
  * A React Context object that stores the Phaser game instance.
@@ -6,7 +7,7 @@ import { createContext } from 'react'
  * @module GameContext
  * @see module:GameProvider
  */
-export const GameContext = createContext({})
+export const GameContext = createContext<Phaser.Game | undefined>(undefined)
 
 /**
  * A higher-order React functional component that provides a GameContext to its children.
