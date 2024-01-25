@@ -14,7 +14,7 @@ export default function useEventEmitter(type: string) {
   const game = useContext(GameContext)
 
   return useCallback(
-    (detail) => {
+    (detail: any) => {
       game && game.events.emit(type, detail)
     },
     [game]
