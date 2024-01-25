@@ -30,7 +30,7 @@ export default class ConfigError extends TypeError {
       )
     }
 
-    const value = config[propertyName]
+    const value = config[propertyName as keyof Phaser.Types.Core.GameConfig]
 
     if (value === undefined) {
       throw new InvalidPropertyNameError(
